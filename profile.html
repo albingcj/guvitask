@@ -10,13 +10,17 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- font font-awesome v6.0.0 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha384-hp5YjT6i7W6A7fDTcx8ed6OpCztgUWNx1TG5Wn5QJusfAA0sCq56bXrESDoj6lKD" crossorigin="anonymous">
+
 
 </head>
 
-<body>
+<body class="bg-info">
     <header>
         <!-- place navbar here -->
-        <nav class="navbar navbar-expand-sm navbar-light bg-light">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
             <div class="container">
                 <a class="navbar-brand" href="#">Navbar</a>
                 <form class="d-flex my-2 my-lg-0">
@@ -27,21 +31,179 @@
 
     </header>
     <main>
-        <div class="container">
-            <div class="row">
-                <div class="col-4">image</div>
-                <div class="col-8">name</div>
+        <div class="container py-4">
+            <div class="row justify-content-center mb-4 g-4">
+                <div class="col-auto col-sm-4">
+                    <div class="rounded-5">
+                        <img src="https://www.placeholder.com/400" class="img-fluid rounded-5 shadow" alt="">
+                    </div>
+                </div>
+                <div class="col-11 col-sm-8">
+                    <div class="d-flex align-items-center justify-content-between h-100 bg-light rounded-5 shadow">
+
+                        <div class="card-text p-5">
+                            <div class="fs-3 fw-bolder">Name php</div>
+                            <div class="fs-6 text-secondary">Email php</div>
+                            <div class="fs-6 mb-4 text-secondary">Phone php</div>
+                            <button type="button" class="btn btn-primary" onclick="toggleVisibility()">Edit
+                                Profile</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                <div class="col">
-                    personal details
+            <div class="row justify-content-center mb-4 g-4 d-none" id="updForm">
+                <div class="col-11 col-sm-12">
+                    <div class="rounded-5 bg-light shadow p-4">
+
+                        <div class="row mb-3">
+                            <span class="fs-4 fw-bold ms-4 ps-3 ">Edit Profile</span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="profName" class="form-label">Name</label>
+                            <input type="text" class="form-control form-control-lg" name="profName" id="profName">
+                        </div>
+                        <div class="mb-3">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label for="profAdd1" class="form-label">Address</label>
+                                    <input type="text" class="form-control form-control-lg" name="profAdd1"
+                                        id="profAdd1">
+                                </div>
+                            </div>
+                            <div class="row d-flex">
+                                <div class="col-12 col-md-6">
+                                    <label for="profAdd2" class="form-label">State</label>
+                                    <input type="text" class="form-control form-control-lg" name="profAdd2"
+                                        id="profAdd2">
+
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="profAdd3" class="form-label">Pincode</label>
+                                    <input type="number" class="form-control form-control-lg" name="profAdd3"
+                                        id="profAdd3">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <label for="profDate" class="form-label">Date of Birth</label>
+                                    <input type="date" class="form-control form-control-lg" name="profDate"
+                                        id="profDate">
+                                </div>
+                                <div class="col-12 col-md-6">
+                                    <label for="profGend" class="form-label">Gender</label>
+                                    <select class="form-select form-select-lg" name="profGend" id="profGend">
+                                        <option selected disabled>Select one</option>
+                                        <option value="Male">Male</option>
+                                        <option value="female">Female</option>
+                                        <option value="others">Others</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-4 g-4" id="detTable">
+                <div class="col-11 col-sm-12">
+                    <div class="rounded-5 bg-light shadow p-4">
+                        <div class="row mb-3">
+                            <span class="fs-4 fw-bold ms-4 ps-3">User Profile</span>
+                        </div>
+                        <div class="table-responsive">
+                            <table class="table">
+                                <tbody>
+                                    <tr>
+                                        <td scope="row" class="p-3 col-3 fw-semibold">Name</td>
+                                        <td>Name php</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row" class="p-3 col-3 fw-semibold">Address</td>
+                                        <td>Address php</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row" class="p-3 col-3 fw-semibold">State</td>
+                                        <td>State php</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row" class="p-3 col-3 fw-semibold">pincode</td>
+                                        <td>pincode php</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row" class="p-3 col-3 fw-semibold">Date of birth</td>
+                                        <td>Date of birth php</td>
+                                    </tr>
+                                    <tr>
+                                        <td scope="row" class="p-3 col-3 fw-semibold">gender</td>
+                                        <td>gender php</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="row justify-content-center mb-4 g-4" id="updPass">
+                <div class="col-11 col-sm-12">
+                    <div class="rounded-5 bg-light shadow p-4">
+                        <div class="accordion accordion-flush p-2" id="accordionFlush">
+                            <div class="accordion-item ">
+                                <h2 class="accordion-header" id="flush-headingOne">
+                                    <button class="accordion-button collapsed shadow-none bg-light" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
+                                        aria-expanded="true" aria-controls="flush-collapseOne">
+                                        <span class="fs-4 fw-bold">Change Password</span>
+                                    </button>
+                                </h2>
+                                <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
+                                    <div class="accordion-body">
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <label for="profPass1" class="form-label">New Password</label>
+                                                <input type="password" class="form-control form-control-lg"
+                                                    name="profPass1" id="profPass1">
+                                            </div>
+
+                                            <div class="col-12 col-md-6">
+                                                <label for="profPass2" class="form-label">Confirm Password</label>
+                                                <input type="password" class="form-control form-control-lg"
+                                                    name="profPass2" id="profPass2">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- <div class="mb-3 g-3">
+                            <div class="row mb-3">
+                                <span class="fs-4 fw-bold">Change Password</span>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-md-6">
+                                    <label for="profPass1" class="form-label">New Password</label>
+                                    <input type="password" class="form-control form-control-lg" name="profPass1"
+                                        id="profPass1">
+                                </div>
+
+                                <div class="col-12 col-md-6">
+                                    <label for="profPass2" class="form-label">Confirm Password</label>
+                                    <input type="password" class="form-control form-control-lg" name="profPass2"
+                                        id="profPass2">
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    <footer>
-        <!-- place footer here -->
-    </footer>
+    <script src="js/profile.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
