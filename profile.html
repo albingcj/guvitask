@@ -32,172 +32,180 @@
     </header>
     <main>
         <div class="container py-4">
-            <div class="row justify-content-center mb-4 g-4">
-                <div class="col-auto col-sm-4">
-                    <div class="rounded-5">
-                        <img src="https://www.placeholder.com/400" class="img-fluid rounded-5 shadow" alt="">
-                    </div>
-                </div>
-                <div class="col-11 col-sm-8">
-                    <div class="d-flex align-items-center justify-content-between h-100 bg-light rounded-5 shadow">
-
-                        <div class="card-text p-5">
-                            <div class="fs-3 fw-bolder">Name php</div>
-                            <div class="fs-6 text-secondary">Email php</div>
-                            <div class="fs-6 mb-4 text-secondary">Phone php</div>
-                            <button type="button" class="btn btn-primary" onclick="toggleVisibility()">Edit
-                                Profile</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center mb-4 g-4 d-none" id="updForm">
-                <div class="col-11 col-sm-12">
-                    <div class="rounded-5 bg-light shadow p-4">
-
-                        <div class="row mb-3">
-                            <span class="fs-4 fw-bold ms-4 ps-3 ">Edit Profile</span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="profName" class="form-label">Name</label>
-                            <input type="text" class="form-control form-control-lg" name="profName" id="profName">
-                        </div>
-                        <div class="mb-3">
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label for="profAdd1" class="form-label">Address</label>
-                                    <input type="text" class="form-control form-control-lg" name="profAdd1"
-                                        id="profAdd1">
-                                </div>
+            <div class="row col d-flex justify-content-between">
+                <div class="col-12 col-md-5 mb-4">
+                    <div class="d-flex align-items-center justify-content-center bg-light h-100  rounded-5 shadow">
+                        <div class="card-text p-4">
+                            <div class=" d-flex  mb-2 justify-content-center rounded-5">
+                                <img src="https://www.placeholder.com/400" class="img-fluid rounded-5 shadow" alt="">
                             </div>
-                            <div class="row d-flex">
-                                <div class="col-12 col-md-6">
-                                    <label for="profAdd2" class="form-label">State</label>
-                                    <input type="text" class="form-control form-control-lg" name="profAdd2"
-                                        id="profAdd2">
-
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <label for="profAdd3" class="form-label">Pincode</label>
-                                    <input type="number" class="form-control form-control-lg" name="profAdd3"
-                                        id="profAdd3">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="mb-3">
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <label for="profDate" class="form-label">Date of Birth</label>
-                                    <input type="date" class="form-control form-control-lg" name="profDate"
-                                        id="profDate">
-                                </div>
-                                <div class="col-12 col-md-6">
-                                    <label for="profGend" class="form-label">Gender</label>
-                                    <select class="form-select form-select-lg" name="profGend" id="profGend">
-                                        <option selected disabled>Select one</option>
-                                        <option value="Male">Male</option>
-                                        <option value="female">Female</option>
-                                        <option value="others">Others</option>
-                                    </select>
-                                </div>
+                            <div class="row p-3">
+                                <div class="fs-3 fw-bolder">Name php</div>
+                                <div class="fs-6 text-secondary">Email php</div>
+                                <div class="fs-6 mb-4 text-secondary">Phone php</div>
+                                <button type="button" class="btn btn-primary col-auto" onclick="toggleVisibility()">Edit
+                                    Profile</button>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row justify-content-center mb-4 g-4" id="detTable">
-                <div class="col-11 col-sm-12">
-                    <div class="rounded-5 bg-light shadow p-4">
-                        <div class="row mb-3">
-                            <span class="fs-4 fw-bold ms-4 ps-3">User Profile</span>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td scope="row" class="p-3 col-3 fw-semibold">Name</td>
-                                        <td>Name php</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="p-3 col-3 fw-semibold">Address</td>
-                                        <td>Address php</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="p-3 col-3 fw-semibold">State</td>
-                                        <td>State php</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="p-3 col-3 fw-semibold">pincode</td>
-                                        <td>pincode php</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="p-3 col-3 fw-semibold">Date of birth</td>
-                                        <td>Date of birth php</td>
-                                    </tr>
-                                    <tr>
-                                        <td scope="row" class="p-3 col-3 fw-semibold">gender</td>
-                                        <td>gender php</td>
-                                    </tr>
-                                </tbody>
+                <div class="col-12 col-md-7">
+                    <div class="row justify-content-center h-100 mb-4 g-4 d-none" id="updForm">
+                        <form id="update" class="d-flex justify-content-center">
+                            <div class="col-11 col-sm-12 h-100">
+                                <div class="rounded-5 bg-light h-100 shadow p-4">
 
-                            </table>
-                        </div>
+                                    <div class="row mb-3">
+                                        <span class="fs-4 fw-bold ms-4 ps-3 ">Edit Profile</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="profName" class="form-label">Name</label>
+                                        <input type="text" class="form-control form-control-lg" name="profName"
+                                            id="profName">
+                                    </div>
+                                    <div class="mb-3">
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label for="profNum" class="form-label">Mobile Number</label>
+                                                <input type="text" class="form-control form-control-lg" name="profNum"
+                                                    id="profNum">
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col">
+                                                <label for="profAdd" class="form-label">Address</label>
+                                                <input type="text" class="form-control form-control-lg" name="profAdd"
+                                                    id="profAdd">
+                                            </div>
+                                        </div>
+                                        <div class="row d-flex">
+                                            <div class="col-12 col-md-6">
+                                                <label for="profSta" class="form-label">State</label>
+                                                <input type="text" class="form-control form-control-lg" name="profSta"
+                                                    id="profSta">
 
-                    </div>
-                </div>
-            </div>
-            <div class="row justify-content-center mb-4 g-4" id="updPass">
-                <div class="col-11 col-sm-12">
-                    <div class="rounded-5 bg-light shadow p-4">
-                        <div class="accordion accordion-flush p-2" id="accordionFlush">
-                            <div class="accordion-item ">
-                                <h2 class="accordion-header" id="flush-headingOne">
-                                    <button class="accordion-button collapsed shadow-none bg-light" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#flush-collapseOne"
-                                        aria-expanded="true" aria-controls="flush-collapseOne">
-                                        <span class="fs-4 fw-bold">Change Password</span>
-                                    </button>
-                                </h2>
-                                <div id="flush-collapseOne" class="accordion-collapse collapse"
-                                    aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
-                                    <div class="accordion-body">
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <label for="profPin" class="form-label">Pincode</label>
+                                                <input type="number" class="form-control form-control-lg" name="profPin"
+                                                    id="profPin">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
                                         <div class="row">
                                             <div class="col-12 col-md-6">
-                                                <label for="profPass1" class="form-label">New Password</label>
-                                                <input type="password" class="form-control form-control-lg"
-                                                    name="profPass1" id="profPass1">
+                                                <label for="profDate" class="form-label">Date of Birth</label>
+                                                <input type="date" class="form-control form-control-lg" name="profDate"
+                                                    id="profDate">
                                             </div>
-
                                             <div class="col-12 col-md-6">
-                                                <label for="profPass2" class="form-label">Confirm Password</label>
-                                                <input type="password" class="form-control form-control-lg"
-                                                    name="profPass2" id="profPass2">
+                                                <label for="profGen" class="form-label">Gender</label>
+                                                <select class="form-select form-select-lg" name="profGen" id="profGen">
+                                                    <option selected="" disabled="">Select one</option>
+                                                    <option value="Male">Male</option>
+                                                    <option value="female">Female</option>
+                                                    <option value="others">Others</option>
+                                                </select>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </form>
+                    </div>
+                    <div class="row justify-content-center h-100 pb-4 g-4" id="detTable">
+                        <div class="col-11 h-100 col-sm-12">
+                            <div class="rounded-5 bg-light h-100 shadow p-4">
+                                <div class="row mb-3">
+                                    <span class="fs-4 fw-bold ms-4 ps-3">User Profile</span>
+                                </div>
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <tbody>
+                                            <tr>
+                                                <td scope="row" class="p-3 col-3 fw-semibold">Name</td>
+                                                <td id="viewName"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" class="p-3 col-3 fw-semibold">Address</td>
+                                                <td id="viewAdd"></td>
+                                            </tr>
 
+                                            <tr>
+                                                <td scope="row" class="p-3 col-3 fw-semibold">Number</td>
+                                                <td id="viewNum"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" class="p-3 col-3 fw-semibold">State</td>
+                                                <td id="viewSta"></td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" class="p-3 col-3 fw-semibold">pincode</td>
+                                                <td id="viewPin">
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" class="p-3 col-3 fw-semibold">Date of birth</td>
+                                                <td id="viewDob">
+                                                </td>
+                                                <td>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td scope="row" class="p-3 col-3 fw-semibold">gender</td>
+                                                <td id="viewGen"></td>
+                                            </tr>
+                                        </tbody>
+
+                                    </table>
+                                </div>
+
+                            </div>
                         </div>
+                    </div>
 
-                        <!-- <div class="mb-3 g-3">
-                            <div class="row mb-3">
-                                <span class="fs-4 fw-bold">Change Password</span>
-                            </div>
-                            <div class="row">
-                                <div class="col-12 col-md-6">
-                                    <label for="profPass1" class="form-label">New Password</label>
-                                    <input type="password" class="form-control form-control-lg" name="profPass1"
-                                        id="profPass1">
-                                </div>
 
-                                <div class="col-12 col-md-6">
-                                    <label for="profPass2" class="form-label">Confirm Password</label>
-                                    <input type="password" class="form-control form-control-lg" name="profPass2"
-                                        id="profPass2">
+                </div>
+                <div class="col">
+                    <div class="row justify-content-center mb-4 g-4" id="updPass">
+                        <div class="col-11 col-sm-12">
+                            <div class="rounded-5 bg-light shadow p-4">
+                                <div class="accordion accordion-flush p-2" id="accordionFlush">
+                                    <div class="accordion-item ">
+                                        <h2 class="accordion-header" id="flush-headingOne">
+                                            <button class="accordion-button collapsed shadow-none bg-light"
+                                                type="button" data-bs-toggle="collapse"
+                                                data-bs-target="#flush-collapseOne" aria-expanded="true"
+                                                aria-controls="flush-collapseOne">
+                                                <span class="fs-4 fw-bold">Change Password</span>
+                                            </button>
+                                        </h2>
+                                        <div id="flush-collapseOne" class="accordion-collapse collapse"
+                                            aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlush">
+                                            <div class="accordion-body">
+                                                <div class="row g-4">
+                                                    <div class="col-12 col-md-6">
+                                                        <label for="profPass1" class="form-label">New Password</label>
+                                                        <input type="password" class="form-control form-control-lg"
+                                                            name="profPass1" id="profPass1" minlength="8">
+                                                    </div>
+
+                                                    <div class="col-12 col-md-6">
+                                                        <label for="profPass2" class="form-label">Confirm
+                                                            Password</label>
+                                                        <input type="password" class="form-control form-control-lg"
+                                                            name="profPass2" id="profPass2" minlength="8">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div> -->
+                        </div>
                     </div>
                 </div>
             </div>

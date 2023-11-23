@@ -11,46 +11,78 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
 
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+
+    <!-- my script -->
+    <script src="js/register.js"></script>
+
 </head>
 
 <body>
+
     <main class="bg-info">
         <div class="d-flex justify-content-center align-items-center vh-100">
-            <div class="rounded-5 bg-light shadow p-3 m-5">
+            <div class="rounded-5 bg-light shadow p-3 m-5 ">
                 <div class="row justify-content-center">
                     <!-- left image -->
                     <div class="col-12 col-md-6 p-5 d-flex justify-content-center">
                         <img src="assets/index.svg" class="img-fluid rounded" alt="" />
                     </div>
                     <!-- right login form -->
-
-                    <div class="col d-flex align-items-center justify-content-center p-5">
+                    <div class="col d-flex align-items-center justify-content-center px-5">
                         <div class="row g-4">
-                            <div class=" text-center mt-2">
-                                <h2>LOGIN</h2>
-                                <div id="errorMessage1" class="alert alert-warning d-none"></div>
+                            <div class="text-center mt-2">
+                                <h1>REGISTER</h1>
                             </div>
-                            <form id="login">
-                                <div class="input-group mb-3">
-                                    <input type="text"
-                                        class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
-                                        placeholder="E-mail address" name="userEmail" required />
+                            <form id="registerForm">
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <input type="text"
+                                            class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
+                                            placeholder="Enter your name" id="regName" name="regName" required="" />
+                                    </div>
                                 </div>
-                                <div class="mb-5">
-                                    <input type="password"
-                                        class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
-                                        name="userPwd" id="userPwd" placeholder="Password" minlength="8" required />
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <input type="email"
+                                            class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
+                                            placeholder="E-mail address" id="regMail" name="regMail" required="" />
+                                    </div>
                                 </div>
-                                <div class="input-group mb-4">
-                                    <button class="btn btn-lg btn-primary btn-outline-light border-0 w-100 fs-6">
-                                        Login
+                                <div class="row">
+                                    <div class="mb-3">
+                                        <input type="password"
+                                            class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
+                                            placeholder="Password" id="regPwd1" name="regPwd1" minlength="8"
+                                            required="" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="mb-5">
+                                        <input type="password"
+                                            class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
+                                            placeholder="Confirm password" id="regPwd2" name="regPwd2" minlength="8"
+                                            required="" />
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <button type="submit" class="btn btn-primary">
+                                        Register
                                     </button>
                                 </div>
                             </form>
+
                             <div class=" text-center">
                                 <span class="text-secondary">
-                                    Don't have an account?
-                                    <a href="register.html">Register
+                                    Already have an account?
+                                    <a href="login.html">Login
                                     </a>
                                 </span>
                             </div>
@@ -60,7 +92,8 @@
             </div>
         </div>
     </main>
-<script src="js/index.js"></script>
+
+
 
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
