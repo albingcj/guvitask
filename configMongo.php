@@ -2,8 +2,6 @@
 require_once 'vendor/autoload.php'; // Adjust the path based on your project structure
 
 // MongoDB configuration
-$mongoHost = 'localhost';  // Your MongoDB host
-$mongoPort = 27017;        // Your MongoDB port
 $mongoDB = 'guvitask';      // Your MongoDB database name
 
 // Create a MongoDB connection

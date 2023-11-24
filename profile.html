@@ -39,9 +39,9 @@
                                 <img src="https://www.placeholder.com/400" class="img-fluid rounded-5 shadow" alt="">
                             </div>
                             <div class="row p-3">
-                                <div class="fs-3 fw-bolder">Name php</div>
-                                <div class="fs-6 text-secondary">Email php</div>
-                                <div class="fs-6 mb-2 text-secondary">Phone php</div>
+                                <div class="fs-3 fw-bolder viewName"></div>
+                                <div class="fs-6 text-secondary viewMail"></div>
+                                <div class="fs-6 mb-2 text-secondary viewNum">Phone php</div>
                                 <button type="button" class="btn btn-primary ms-2 col-auto"
                                     onclick="toggleVisibility()">Edit
                                     Profile</button>
@@ -110,8 +110,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="mb-3">
-                                        <button type="submit">Save</button>
+                                    <div class="mb-3 d-flex justify-content-center">
+                                        <button type="submit" class="btn btn-primary">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -128,7 +128,7 @@
                                         <tbody>
                                             <tr>
                                                 <td scope="row" class="p-3 col-3 fw-semibold">Name</td>
-                                                <td id="viewName"></td>
+                                                <td id="viewName" class="viewName"></td>
                                             </tr>
                                             <tr>
                                                 <td scope="row" class="p-3 col-3 fw-semibold">Address</td>
@@ -137,7 +137,7 @@
 
                                             <tr>
                                                 <td scope="row" class="p-3 col-3 fw-semibold">Number</td>
-                                                <td id="viewNum"></td>
+                                                <td id="viewNum" class="viewNum"></td>
                                             </tr>
                                             <tr>
                                                 <td scope="row" class="p-3 col-3 fw-semibold">State</td>

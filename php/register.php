@@ -1,6 +1,18 @@
 <?php
 
-include 'include/configSql.php';
+// include 'include/configSql.php';
+
+define('DB_SERVER', 'localhost');
+define('DB_USERNAME', 'root');
+define('DB_PASSWORD', '');
+define('DB_DATABASE', 'guvitask');
+$db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
+
+if (!$db){
+ die("connection failed".mysqli_connect_error());
+}
+
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
@@ -44,8 +56,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         return;
     } else {
         // not inside the db, so we can insert to the db
-        // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-        $hashedPassword = $password;
+        // $hashedPassword = $password;
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
         $insertQuery = "INSERT INTO register (name, email, password) VALUES (?, ?, ?)";
         $stmt = $db->prepare($insertQuery);
         $stmt->bind_param("sss", $name, $email, $hashedPassword);
@@ -67,5 +79,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 } else {
-    echo json_encode(["status" => 400, "message" => "Bad Request"]);
+    $res = [
+        'status' => 400,
+        'message' => 'Bad Request'
+    ];
+    echo json_encode($res);
 }
