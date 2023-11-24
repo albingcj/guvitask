@@ -10,13 +10,50 @@ if ($mysqli->connect_error) {
     die("Connection failed: " . $mysqli->connect_error);
 }
 
-// Check if the request method is POST
+
+
+
+
+// Function to validate user credentials
+function validateCredentials($email, $password)
+{
+    // Access the global database connection variable
+    global $mysqli;
+
+    // Query to retrieve the user's hashed password by email
+    $query = "SELECT * FROM register WHERE email = ? LIMIT 1";
+    $stmt = $mysqli->prepare($query);
+    $stmt->bind_param('s', $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $user = $result->fetch_assoc();
+
+    if ($user) {
+        // Check if the provided password matches the hashed password in the database
+        if (password_verify($password, $user['password'])) {
+            require_once("../vendor/autoload.php");
+            $redis = new Predis\Client();
+
+            // $redisKey = "user:email";
+            // $redis->hmset($redisKey, "id", $user['id'], "name", $user['name'], "email", $user['email']);
+            $redis->set("user:email", $user['email']);
+            $redis->set("user:name", $user['name']);
+            return true;
+        }
+    }
+
+    return false;
+}
+
+
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Retrieve form data
     $userEmail = $_POST['userEmail'];
     $userPwd = $_POST['userPwd'];
 
-    // Validate user credentials
+
+    
     $validCredentials = validateCredentials($userEmail, $userPwd);
 
     if ($validCredentials) {
@@ -40,26 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'message' => 'Bad Request'
     ];
     echo json_encode($res);
+    return;
 }
 
-// Function to validate user credentials
-function validateCredentials($email, $password)
-{
-    // Access the global database connection variable
-    global $mysqli;
 
-    // Query to retrieve the user's hashed password by email
-    $query = "SELECT * FROM register WHERE email = ? LIMIT 1";
-    $stmt = $mysqli->prepare($query);
-    $stmt->bind_param('s', $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    $user = $result->fetch_assoc();
-
-    if ($user) {
-        // Check if the provided password matches the hashed password in the database
-        return password_verify($password, $user['password']);
-    }
-
-    return false;
-}

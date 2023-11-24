@@ -26,16 +26,16 @@
 
 <body>
 
-    <main class="bg-info">
-        <div class="d-flex justify-content-center align-items-center vh-100">
+    <main class="bg-info d-flex justify-content-center align-items-center vh-100">
+        <div class="container d-flex justify-content-center align-items-center">
             <div class="rounded-5 bg-light shadow p-3 m-5 ">
                 <div class="row justify-content-center">
                     <!-- left image -->
-                    <div class="col-12 col-md-6 p-5 d-flex justify-content-center">
-                        <img src="assets/index.svg" class="img-fluid rounded" alt="" />
+                    <div class="col-12 col-sm-6 d-sm-flex justify-content-center d-none p-0 p-sm-4">
+                        <img src="assets/index.svg" class="img-fluid rounded" alt="">
                     </div>
                     <!-- right login form -->
-                    <div class="col d-flex align-items-center justify-content-center px-5">
+                    <div class="col d-flex align-items-center justify-content-center p-5">
                         <div class="row g-4">
                             <div class="text-center mt-2">
                                 <h1>REGISTER</h1>
@@ -43,32 +43,22 @@
                             <form id="registerForm">
                                 <div class="row">
                                     <div class="mb-3">
-                                        <input type="text"
-                                            class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
-                                            placeholder="Enter your name" id="regName" name="regName" required="" />
+                                        <input type="text" class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 " placeholder="Enter your name" id="regName" name="regName" required="">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="mb-3">
-                                        <input type="email"
-                                            class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
-                                            placeholder="E-mail address" id="regMail" name="regMail" required="" />
+                                        <input type="email" class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 " placeholder="E-mail address" id="regMail" name="regMail" required="">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="mb-3">
-                                        <input type="password"
-                                            class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
-                                            placeholder="Password" id="regPwd1" name="regPwd1" minlength="8"
-                                            required="" />
+                                        <input type="password" class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 " placeholder="Password" id="regPwd1" name="regPwd1" minlength="8" required="">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="mb-5">
-                                        <input type="password"
-                                            class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 "
-                                            placeholder="Confirm password" id="regPwd2" name="regPwd2" minlength="8"
-                                            required="" />
+                                        <input type="password" class="form-control form-control-lg border-0 border-bottom border-secondary bg-light shadow-none rounded-0 " placeholder="Confirm password" id="regPwd2" name="regPwd2" minlength="8" required="">
                                     </div>
                                 </div>
                                 <div class="row">

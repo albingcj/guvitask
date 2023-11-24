@@ -1,9 +1,26 @@
 <?php
 
-
-
 //mongo connection
 require_once '../vendor/autoload.php'; // Adjust the path based on your project structure
+
+
+
+
+$redis = new Predis\Client();
+// $emailKey = "user:email"; // Adjust the key based on how you stored it
+
+// Retrieve the email from Redis
+// $userData = $redis->hgetall($redisKey);
+$email = $redis->get("user:email");
+$name = $redis->get("user:name");
+if (!$email) {
+	header('Location: ../index.html');  // Adjust the path based on your file structure
+	exit();
+}
+  
+
+
+
 
 // MongoDB configuration
 $mongoDB = 'guvitask';      // Your MongoDB database name
@@ -13,42 +30,19 @@ $mongoClient = new MongoDB\Client("mongodb://localhost:27017");
 
 // Check if the connection was successful
 if ($mongoClient) {
-    // Select the database
-    $database = $mongoClient->$mongoDB;
+	// Select the database
+	$database = $mongoClient->$mongoDB;
 
-    // Select the collection (table) within the database
-    $collection = $database->profile; // Assuming your collection is named 'profile'
+	// Select the collection (table) within the database
+	$collection = $database->profile; // Assuming your collection is named 'profile'
 } else {
-    // Handle connection errors
-    echo "Error connecting to MongoDB";
-    exit();
-}
-
-
-
-
-session_start();
-
-
-$_SESSION['email'] = 'b@b.b';
-
-// Check if the user is logged in
-if (!isset($_SESSION['email'])) {
-	// Redirect to login page or handle the case where the user is not logged in
-	header('Location: ../login.html');  // Adjust the path based on your file structure
+	// Handle connection errors
+	echo "Error connecting to MongoDB";
 	exit();
 }
 
-
-$email = $_SESSION['email'];
-
 // Assuming $collection is your MongoDB collection
 $document = $collection->findOne(['email' => $email]);
-// echo '<pre>';
-// var_dump($document);
-// echo '</pre>';
-// Check if the user exists in the MongoDB collection
-// Check if the request is for profile retrieval or update/insert
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	// Retrieve the user's profile information
 	$document = $collection->findOne(['email' => $email]);
@@ -57,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 	if (!$document) {
 		// echo json_encode(['error' => 'User profile not found']);
 		$responseData = [
-			'name' => '',
+			'name' => $name,
 			'mail' => $email,
 			'address' => '',
 			'mobile_number' => '',
@@ -120,7 +114,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 					'pincode' => $_POST['profPin'] !== '' ? $_POST['profPin'] : $document['pincode'],
 					'date_of_birth' => $_POST['profDate'] !== '' ? $_POST['profDate'] : $document['date_of_birth'],
 					'gender' => $_POST['profGen'] !== '' ? $_POST['profGen'] : $document['gender'],
-					// Add more fields as needed
 				]
 			]
 		);
