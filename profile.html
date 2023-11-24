@@ -11,8 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <!-- font font-awesome v6.0.0 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-        integrity="sha384-hp5YjT6i7W6A7fDTcx8ed6OpCztgUWNx1TG5Wn5QJusfAA0sCq56bXrESDoj6lKD" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
 
 </head>
@@ -42,8 +41,9 @@
                             <div class="row p-3">
                                 <div class="fs-3 fw-bolder">Name php</div>
                                 <div class="fs-6 text-secondary">Email php</div>
-                                <div class="fs-6 mb-4 text-secondary">Phone php</div>
-                                <button type="button" class="btn btn-primary col-auto" onclick="toggleVisibility()">Edit
+                                <div class="fs-6 mb-2 text-secondary">Phone php</div>
+                                <button type="button" class="btn btn-primary ms-2 col-auto"
+                                    onclick="toggleVisibility()">Edit
                                     Profile</button>
                             </div>
                         </div>
@@ -102,13 +102,16 @@
                                             <div class="col-12 col-md-6">
                                                 <label for="profGen" class="form-label">Gender</label>
                                                 <select class="form-select form-select-lg" name="profGen" id="profGen">
-                                                    <option selected="" disabled="">Select one</option>
+                                                    <option value="">Select one</option>
                                                     <option value="Male">Male</option>
                                                     <option value="female">Female</option>
                                                     <option value="others">Others</option>
                                                 </select>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <button type="submit">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -211,6 +214,7 @@
             </div>
         </div>
     </main>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="js/profile.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
