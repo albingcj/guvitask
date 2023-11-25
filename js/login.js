@@ -10,18 +10,17 @@ $(document).ready(function () {
             data: form.serialize(),
             success: function (res) {
                 res = JSON.parse(res);
-                console.log(res);
+                // console.log(res);
                 if (res.status == 200) {
                     Swal.fire({
                         icon: "success",
                         title: "Success",
                         text: res.message,
                     }).then(function () {
-                        // Store login information in local storage
-                        localStorage.setItem('userEmail', res.email); // Assuming you receive the email in the response
-                        localStorage.setItem('username', res.username);
 
-                        // Redirect to the profile page
+                        localStorage.setItem('userEmail', res.email);
+                        localStorage.setItem('userPassword', res.password);
+
                         window.location.href = "profile.html";
                     });
                 } else {

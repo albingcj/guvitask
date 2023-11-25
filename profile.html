@@ -12,18 +12,23 @@
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
     <!-- font font-awesome v6.0.0 -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
+    <script src="js/profile.js"></script>
+    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 
 </head>
 
 <body class="bg-info">
     <header>
-        <!-- place navbar here -->
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top ">
             <div class="container">
                 <a class="navbar-brand" href="#">Navbar</a>
                 <form class="d-flex my-2 my-lg-0">
-                    <button class="btn btn-outline-danger my-2" type="submit">Logout</button>
+                    <button class="btn btn-outline-danger my-2" type="button" id="logout">Logout</button>
                 </form>
             </div>
         </nav>
@@ -31,6 +36,8 @@
     </header>
     <main>
         <div class="container py-4">
+            <div class="freespace m-5 p-1">
+            </div>
             <div class="row col d-flex justify-content-between">
                 <div class="col-12 col-md-5 mb-4">
                     <div class="d-flex align-items-center justify-content-center bg-light h-100  rounded-5 shadow">
@@ -214,8 +221,6 @@
             </div>
         </div>
     </main>
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <script src="js/profile.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">

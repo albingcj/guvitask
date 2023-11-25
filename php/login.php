@@ -11,17 +11,10 @@ if ($mysqli->connect_error) {
 }
 
 
-
-
-
-// Function to validate user credentials
 function validateCredentials($email, $password)
 {
-    // Access the global database connection variable
     global $mysqli;
-
-    // Query to retrieve the user's hashed password by email
-    $query = "SELECT * FROM register WHERE email = ? LIMIT 1";
+    $query = "SELECT * FROM register WHERE email = ?";
     $stmt = $mysqli->prepare($query);
     $stmt->bind_param('s', $email);
     $stmt->execute();
@@ -29,7 +22,6 @@ function validateCredentials($email, $password)
     $user = $result->fetch_assoc();
 
     if ($user) {
-        // Check if the provided password matches the hashed password in the database
         if (password_verify($password, $user['password'])) {
             require_once("../vendor/autoload.php");
             $redis = new Predis\Client();
@@ -48,7 +40,6 @@ function validateCredentials($email, $password)
 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Retrieve form data
     $userEmail = $_POST['userEmail'];
     $userPwd = $_POST['userPwd'];
 
@@ -59,7 +50,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($validCredentials) {
         $res = [
             'status' => 200,
-            'message' => "Login successful"
+            'message' => "Login successful",
+            'email' => $userEmail,
+            'password' => $userPwd
         ];
         echo json_encode($res);
         return;

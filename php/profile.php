@@ -1,55 +1,40 @@
 <?php
 
 //mongo connection
-require_once '../vendor/autoload.php'; // Adjust the path based on your project structure
-
-
+require_once '../vendor/autoload.php';
 
 
 $redis = new Predis\Client();
-// $emailKey = "user:email"; // Adjust the key based on how you stored it
-
-// Retrieve the email from Redis
+// $emailKey = "user:email";
 // $userData = $redis->hgetall($redisKey);
+
 $email = $redis->get("user:email");
 $name = $redis->get("user:name");
 if (!$email) {
-	header('Location: ../index.html');  // Adjust the path based on your file structure
+	header('Location: index.html');
 	exit();
 }
-  
 
 
 
 
-// MongoDB configuration
-$mongoDB = 'guvitask';      // Your MongoDB database name
 
-// Create a MongoDB connection
+// MongoDB 
+$mongoDB = 'guvitask';
 $mongoClient = new MongoDB\Client("mongodb://localhost:27017");
-
-// Check if the connection was successful
 if ($mongoClient) {
-	// Select the database
 	$database = $mongoClient->$mongoDB;
-
-	// Select the collection (table) within the database
-	$collection = $database->profile; // Assuming your collection is named 'profile'
+	$collection = $database->profile;
 } else {
-	// Handle connection errors
 	echo "Error connecting to MongoDB";
 	exit();
 }
 
-// Assuming $collection is your MongoDB collection
 $document = $collection->findOne(['email' => $email]);
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-	// Retrieve the user's profile information
 	$document = $collection->findOne(['email' => $email]);
 
-	// Check if the user exists in the MongoDB collection
 	if (!$document) {
-		// echo json_encode(['error' => 'User profile not found']);
 		$responseData = [
 			'name' => $name,
 			'mail' => $email,
@@ -61,7 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 			'gender' => ''
 		];
 	} else {
-		// Prepare the data to be sent as a JSON response
 		$responseData = [
 			'name' => $document['name'] ?? '',
 			'mail' => $email,
@@ -74,16 +58,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		];
 	}
 
-	// Send the data as a JSON response
 	echo json_encode($responseData);
-} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
-	// Handle form submission (update/insert)
+} elseif (($_SERVER['REQUEST_METHOD'] === 'POST') && isset($_POST['action']) ) {
+	$redis->del("user:email");
+	$redis->del("user:name");
+  
+	echo json_encode(['status' => 200, 'message' => 'Logout successful']);
 
-	// Check if the user exists in the MongoDB collection
+} elseif ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$document = $collection->findOne(['email' => $email]);
 
 	if (!$document) {
-		// If the user doesn't exist, insert a new document with form data
 		$insertResult = $collection->insertOne([
 			'email' => $email,
 			'name' => $_POST['profName'] ?? '',
@@ -93,7 +78,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 			'pincode' => $_POST['profPin'] ?? 0,
 			'date_of_birth' => $_POST['profDate'] ?? '',
 			'gender' => $_POST['profGen'] ?? ''
-			// Add more fields as needed
 		]);
 
 		if ($insertResult->getInsertedCount() > 0) {
@@ -102,7 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 			echo json_encode(['error' => 'Failed to create a new profile']);
 		}
 	} else {
-		// If the user exists, update the document with form data
 		$updateResult = $collection->updateOne(
 			['email' => $email],
 			[
@@ -125,6 +108,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 		}
 	}
 } else {
-	// Handle unsupported request method
 	echo json_encode(['error' => 'Unsupported request method']);
 }

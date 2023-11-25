@@ -9,10 +9,8 @@ function fetchPro() {
         url: 'php/profile.php',
         dataType: 'json',
         beforeSend: function () {
-            // Show loading spinner or other loading indicator
         },
         success: function (response) {
-            // Update HTML elements with retrieved data
             $('.viewName').text(response.name);
             $('.viewMail').text(response.mail);
             $('.viewNum').text(response.mobile_number);
@@ -24,24 +22,21 @@ function fetchPro() {
         },
         error: function (xhr, status, error) {
             console.error('Error fetching user profile:', error);
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                text: 'Please Login!',
+            }).then(function () {
+                window.location.href = "login.html";
+            });
 
-            // Handle specific error cases
-            if (status === 'timeout') {
-                alert('The request timed out. Please try again.');
-            } else if (status === 'error' && xhr.status === 500) {
-                alert('Internal server error. Please try again later.');
-            } else {
-                alert('An error occurred. Please try again.');
-            }
         },
         complete: function () {
-            // Hide loading spinner or other loading indicator
         }
     });
 }
 
 $(document).ready(function () {
-    // profile update part
     fetchPro();
 
     $("#update").submit(function (e) {
@@ -49,58 +44,61 @@ $(document).ready(function () {
         var form = $(this);
         $.ajax({
             type: "POST",
-            url: "php/profile.php", // Use consistent URL
+            url: "php/profile.php",
             data: form.serialize(),
             success: function (res) {
                 console.log(res);
-                // Reload the detTable with updated data
                 fetchPro();
-                // Handle the response accordingly
+                toggleVisibility();
             },
             error: function (xhr, status, error) {
                 console.log("Error:", error);
-                // Handle specific error cases
                 alert('Failed to update profile. Please try again.');
             },
             complete: function () {
-                // Hide loading spinner or other loading indicator
             }
         });
     });
 
-    // logout part
-    $("#logout").submit(function (e){
-        e.preventDefault();
-        $.ajax({
-            type: "POST",
-            url: "php/logout.php",
-            success: function (res) {
-                res = JSON.parse(res);
-                console.log(res);
-                if (res.status == 200) {
-                    Swal.fire({
-                        icon: "success",
-                        title: "Success",
-                        text: res.message,
-                    }).then(function () {
-                        // Clear local storage
-                        localStorage.clear();
 
-                        // Redirect to the login page
-                        window.location.href = "login.html";
-                    });
-                } else {
-                    Swal.fire({
-                        icon: "error",
-                        title: res.message,
-                        text: "Logout Failed",
-                    });
-                }
-            },
-            error: function (xhr, status, error) {
-                Swal.fire("Error!", "Could not process your request!", "error");
-                console.log("Error:", error);
-            },
+});
+$(document).ready(function () {
+    $("#logout").click(function (e) {
+        e.preventDefault();
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You will be logged out",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    type: 'POST',
+                    url: 'php/profile.php', // Adjust the path based on your file structure
+                    dataType: 'json',
+                    data: { action: 'logout' },
+                    success: function (res) {
+                        // console.log(res.message);
+
+                        // console.log(1 + localStorage.getItem('userEmail'));
+                        // console.log(1 + localStorage.getItem('userPassword'));
+
+                        localStorage.removeItem('userEmail');
+                        localStorage.removeItem('userPassword');
+
+                        // console.log(2 + localStorage.getItem('userEmail'));
+                        // console.log(2 + localStorage.getItem('userPassword'));
+
+                        window.location.href = 'index.html';
+                    },
+                    error: function (xhr, status, error) {
+                        console.error('Error during logout:', error);
+                    }
+                });
+            }
         });
-    })
+    });
 });
