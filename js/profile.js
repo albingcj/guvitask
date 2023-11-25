@@ -8,8 +8,6 @@ function fetchPro() {
         type: 'GET',
         url: 'php/profile.php',
         dataType: 'json',
-        beforeSend: function () {
-        },
         success: function (response) {
             $('.viewName').text(response.name);
             $('.viewMail').text(response.mail);
@@ -19,6 +17,9 @@ function fetchPro() {
             $('#viewPin').text(response.pincode);
             $('#viewDob').text(response.date_of_birth);
             $('#viewGen').text(response.gender);
+            $('#profileImage').attr('src', response.image);
+            // console.log(response.image);
+
         },
         error: function (xhr, status, error) {
             console.error('Error fetching user profile:', error);
@@ -38,14 +39,27 @@ function fetchPro() {
 
 $(document).ready(function () {
     fetchPro();
-
     $("#update").submit(function (e) {
         e.preventDefault();
         var form = $(this);
+        var formData = {
+            action: 'update',
+            profName: form.find('[name="profName"]').val(),
+            profNum: form.find('[name="profNum"]').val(),
+            profAdd: form.find('[name="profAdd"]').val(),
+            profSta: form.find('[name="profSta"]').val(),
+            profPin: form.find('[name="profPin"]').val(),
+            profDate: form.find('[name="profDate"]').val(),
+            profGen: form.find('[name="profGen"]').val()
+        };
         $.ajax({
             type: "POST",
             url: "php/profile.php",
-            data: form.serialize(),
+            // data: {
+            //     action: 'update',
+            //     formData: form.serialize()
+            // },
+            data : formData,
             success: function (res) {
                 console.log(res);
                 fetchPro();
@@ -54,8 +68,6 @@ $(document).ready(function () {
             error: function (xhr, status, error) {
                 console.log("Error:", error);
                 alert('Failed to update profile. Please try again.');
-            },
-            complete: function () {
             }
         });
     });
@@ -70,14 +82,14 @@ $(document).ready(function () {
             text: "You will be logged out",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
+            cancelButtonColor: "#3085d6",
+            confirmButtonColor: "#d33",
             confirmButtonText: "Yes",
         }).then((result) => {
             if (result.isConfirmed) {
                 $.ajax({
                     type: 'POST',
-                    url: 'php/profile.php', // Adjust the path based on your file structure
+                    url: 'php/profile.php',
                     dataType: 'json',
                     data: { action: 'logout' },
                     success: function (res) {
@@ -101,4 +113,94 @@ $(document).ready(function () {
             }
         });
     });
+});
+
+$(document).ready(function () {
+    $("#changePass").submit(function (e) {
+        e.preventDefault();
+        var form = $(this);
+        $.ajax({
+            type: "POST",
+            url: "php/profile.php",
+            data: {
+                action: 'updatePass',
+                currPass: $('#currPass').val(),
+                updPass1: $('#updPass1').val(),
+                updPass2: $('#updPass2').val(),
+                formData: form.serialize()
+            },
+            success: function (res) {
+                res = JSON.parse(res);
+                console.log(res);
+                console.log(res.message);
+                if (res.status == 200) {
+                    Swal.fire({
+                        icon: "success",
+                        title: "Success",
+                        text: res.message,
+                    }).then(function () {
+
+                        localStorage.removeItem('userPassword');
+                        localStorage.setItem('userPassword', res.password);
+                        window.location.href = "profile.html";
+                    });
+                } else {
+                    Swal.fire({
+                        icon: "error",
+                        title: res.message,
+                        text: "Try Again",
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log("Error:", error);
+                alert('Failed to update profile. Please try again.');
+            },
+            complete: function () {
+            }
+        });
+    });
+});
+
+$(document).ready(function () {
+
+    $("#upload-img").submit(function (e) {
+        e.preventDefault();
+
+        var fileCollection = $("#image-upload")[0];
+        var file = fileCollection.files[0];
+
+        if (file) {
+            var formData = new FormData();
+            formData.append('profilepic', file);
+            formData.append('action', 'updatePic');
+
+            $.ajax({
+                type: "POST",
+                url: "php/profile.php",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (res) {
+                    console.log(res);
+                    fetchPro();
+                },
+                error: function (xhr, status, error) {
+                    console.log("Error:", error);
+                    alert('Failed to update profile. Please try again.');
+                },
+                complete: function () {
+                }
+            });
+        } else {
+            Swal.fire({
+                title: "Please select a file",
+                text: "Please try again!",
+                icon: "warning",
+                confirmButtonColor: "#3085d6",
+                confirmButtonText: "Ok!"
+            })
+        }
+    });
+
 });

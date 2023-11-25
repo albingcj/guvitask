@@ -26,10 +26,11 @@ function validateCredentials($email, $password)
             require_once("../vendor/autoload.php");
             $redis = new Predis\Client();
 
-            // $redisKey = "user:email";
+            // $redisKey = "logged-mail";
             // $redis->hmset($redisKey, "id", $user['id'], "name", $user['name'], "email", $user['email']);
-            $redis->set("user:email", $user['email']);
-            $redis->set("user:name", $user['name']);
+            $redis->set("logged-mail", $user['email']);
+            $redis->set("logged-name", $user['name']);
+            $redis->set("logged-pass", $password);
             return true;
         }
     }

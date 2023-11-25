@@ -1,4 +1,9 @@
 $(document).ready(function () {
+    if (localStorage.getItem('userEmail')) {
+        window.location.href = "profile.html";
+    }
+});
+$(document).ready(function () {
     $("#registerForm").submit(function (e) {
         e.preventDefault();
         var form = $(this);
