@@ -18,7 +18,6 @@ if (!$email) {
 
 
 
-
 // MongoDB 
 $mongoDB = 'guvitask';
 $mongoClient = new MongoDB\Client("mongodb://localhost:27017");
@@ -100,6 +99,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 				]
 			]
 		);
+
+		// update name inside $redis
+		$redis->set("user:name", $_POST['profName'] !== '' ? $_POST['profName'] : $document['name']);
 
 		if ($updateResult->getModifiedCount() > 0) {
 			echo json_encode(['message' => 'Profile updated successfully']);
